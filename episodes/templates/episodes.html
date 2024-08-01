@@ -1,0 +1,36 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Episodes{% endblock %}
+
+{% block content %}
+<div class="flex justify-center p-3 my-20">
+    <div class="container max-w-[1440px] flex flex-col gap-2 bg-white">
+        {% comment %} Encabezado {% endcomment %}
+        <div class="flex items-center gap-2 p-3 rounded-md shadow-lg text-white	bg-[#131313]">
+            <i class="fa-solid fa-chevron-right"></i><h1 class="text-2xl">Episodios</h1>
+        </div>
+        {% comment %} Lista de episodios {% endcomment %}
+        <ul class="flex flex-col gap-2 py-6 px-8 bg-gray-100 shadow-lg">
+            {% for episode in episodes %}
+            <li class="p-2 bg-white rounded-md hover:shadow-md gap-2 episode-container">
+
+                <a href="{% url 'episodes:episode' episode.id %}" class="flex flex-row items-center gap-10">
+
+                    <div class="h-auto w-20">
+                        <img src="{{ episode.episode_image.url }}" alt="">
+                    </div>
+
+                    <div class=" flex flex-col gap-1">
+                        <h1 class="text-lg font-semibold on-episode">{{ episode.name }}</h1>
+                        <p>Episode: {{ episode.id }}</p>
+                    </div>
+
+                </a>
+                        
+             </li>
+
+            {% endfor %}
+        </ul>
+    </div>    
+</div>
+{% endblock %}

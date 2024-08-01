@@ -1,0 +1,22 @@
+<div>
+    <form id="search-form" method="get" action="." class="flex justify-between items-center gap-2">
+        <input name="q" id="search-input" class="text-white focus:outline-none focus:border-yellow-500 focus:ring-yellow-500 focus:ring-1 w-full py-1 px-3 border rounded-md bg-black" type="text" placeholder="Buscar">
+        <button type="submit" class="py-1 px-4 bg-yellow-500 hover:bg-yellow-600 text-black font-bold rounded">Buscar</button>
+    </form>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('#search-form').on('submit', function(event) {
+            event.preventDefault();
+            var query = $('#search-input').val();
+            $.ajax({
+                url: "{% url 'characters:search' %}",
+                data: {'q': query},
+                success: function(data) {
+                    $('#search-results').html(data.html);
+                }
+            });
+        });
+    });
+</script>

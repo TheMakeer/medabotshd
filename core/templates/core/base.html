@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <!-- Head -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tailwind  -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fontawesome -->
+    <script src="https://kit.fontawesome.com/2fefa3f43a.js" crossorigin="anonymous"></script>
+
+    <!-- AJAX -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="{% static 'js/characters/script.js' %}" defer></script>
+
+    <!--  Title -->
+    <title>{% block title %}{% endblock %} | MEDABOTSHD</title>
+    <!--  Favicon -->
+    <link rel="icon" type="x-icon" href="{% static 'media/icons/favicon.ico' %}" >
+
+    <!-- Google Fonts -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+
+    <style>
+        .m-plus-rounded-1c-regular {
+            font-family: "M PLUS Rounded 1c", sans-serif;
+            font-weight: 500;
+            font-style: normal;
+        }
+        * {
+            font-family: "Oswald", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 300;
+            font-style: normal;
+        }
+        .fa-facebook, 
+        .fa-instagram, 
+        .fa-x-twitter, 
+        .fa-github, 
+        .fa-youtube{
+            color: #9ca3af;
+        }
+        .icon-container:hover .fa-facebook, 
+        .icon-container:hover  .fa-instagram, 
+        .icon-container:hover  .fa-x-twitter, 
+        .icon-container:hover  .fa-github, 
+        .icon-container:hover  .fa-youtube {
+            color: #6B7280;
+        }
+
+        .episode-container:hover .on-episode{
+            color: #0EA5E9;
+        }
+    </style>
+</head>
+
+<!-- Body -->
+<body class="flex flex-col min-h-screen">
+    <!-- Header -->
+    <nav class="sticky top-0 z-50 flex items-center border-b-2 border-gray justify-between bg-white p-4 shadow-md">
+        <!-- Enlaces a la izquierda -->
+        <div class="relative flex space-x-4 mt-0">
+            <a href="{% url 'episodes:episodes' %}" class="text-md py-2 hover:shadow-md border-gray-500 px-2 text-black hover:bg-gray-100 rounded-md font-normal">EPISODIOS</a>
+            <a href="{% url 'characters:characters' %}" class="text-md py-2 hover:shadow-md border-gray-500 px-2 text-black hover:bg-gray-100 rounded-md font-normal">PERSONAJES</a>
+        </div>
+        <!-- Logo en el centro -->
+        <div class="absolute z-20 top-[1px] left-1/2 -translate-x-1/2 ">
+            <a href="{% url 'core:index' %}"><img src="/static/media/images/MEDABOTSHD.png" alt="Logo" class="w-64"></a>            
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="flex-grow">
+        {% block content%}
+        {% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer class="p-6 flex justify-center border-t ">
+        <div class=" grid grid-rows-2 gap-2">
+            <ul class="flex justify-between items-center w-96 bg-white">
+                <li><a href="#" class="text-[#9ca3af] text-lg hover:text-[#6B7280]">Episodios</a></li>
+                <li><a href="#" class="text-[#9ca3af] text-lg hover:text-[#6B7280]">Personajes</a></li>
+                <li><a href="#" class="text-[#9ca3af] text-lg hover:text-[#6B7280]">Patreon</a></li>
+                <li><a href="#" class="text-[#9ca3af] text-lg hover:text-[#6B7280]">Contacto</a></li>
+            </ul>
+            
+            <div class="flex justify-between bg-white">
+                <a href="#" class="p-4 hover:shadow-md border-gray-500  rounded-md font-normal icon-container"><i class="fa-brands fa-facebook fa-lg"></i></a>
+                <a href="#" class="p-4 hover:shadow-md border-gray-500  rounded-md font-normal icon-container"><i class="fa-brands fa-instagram fa-lg"></i></a>
+                <a href="#" class="p-4 hover:shadow-md border-gray-500  rounded-md font-normal icon-container"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#" class="p-4 hover:shadow-md border-gray-500  rounded-md font-normal icon-container"><i class="fa-brands fa-github fa-lg"></i></a>
+                <a href="#" class="p-4 hover:shadow-md border-gray-500  rounded-md font-normal icon-container"><i class="fa-brands fa-youtube fa-lg"></i></a>
+            </div>
+    
+            <p class="text-center p-4"> © 2020 MEDABOTSHD, Inc. All rights reserved. </p>
+        </div>
+    </footer>
+</body>
+</html>
+
+

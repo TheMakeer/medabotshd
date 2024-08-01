@@ -1,0 +1,51 @@
+{% extends 'core/base.html' %}
+
+{% block title %}{{ episode.name }}{% endblock %}
+
+{% block content %}
+
+<div class="flex justify-center p-3 my-20">
+    <div class="container max-w-[1440px] flex flex-col gap-6 bg-white">
+        {% comment %} Encabezado {% endcomment %}
+        <div class="flex items-center gap-2 p-3 rounded-md shadow-lg text-white	bg-[#131313]">
+            <i class="fa-solid fa-chevron-right"></i><h1 class="text-2xl">{{ episode.name }}</h1>
+        </div>
+
+        <div class="flex gap-10 h-">
+            <div>
+                <iframe class="" width="1024" height="600" frameborder="0" src="{{ episode.url }}" allowfullscreen ></iframe>
+            </div>
+
+            {% comment %} sidebar {% endcomment %}
+            <div class="overflow-y-auto h-[600px] w-full shadow-md">
+
+                <h1 class="sticky top-0 p-2 text-xl bg-[#131313] text-white">Episodios</h1>
+
+                <ul class="py-6 px-6 bg-gray-100 h-full">
+
+                    {% for episode in episodes %}
+
+                    <li class="p-2 hover:shadow-md episode-container border-gray-500 rounded-md bg-white">
+                        <a href="{% url 'episodes:episode' episode.id %}" class="flex flex-row items-center gap-4">
+                            <div class="h-auto w-20"><img class="rounded-lg"  src="{{ episode.episode_image.url }}" alt=""></div>
+                            <div class="flex flex-col">
+                                <h3 class="font-semibold on-episode">
+                                    {{ episode.name }}
+                                </h3>
+                                <p class="text-sm">
+                                    Episodio {{ episode.id }}
+                                </p>    
+                            </div>
+                        </a>            
+                    </li>
+
+                    <!-- Añade más elementos aquí -->
+
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>    
+</div>
+
+{% endblock %}

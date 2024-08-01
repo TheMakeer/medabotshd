@@ -1,0 +1,79 @@
+{% extends 'core/base.html' %} {% block title %} Characters {% endblock %}
+
+{% block content %}
+
+<div class="flex justify-center p-3 my-20">
+  <div class="container max-w-[1600px] flex flex-col gap-2 bg-white">
+    {% comment %} Personajes {% endcomment %}
+    <div class="flex justify-between rounded-md p-2 shadow-lg bg-[#131313]">
+      <div class="flex items-center gap-2 text-white">
+        <i class="fa-solid fa-chevron-right"></i>
+        <h1 class="text-2xl">Personajes</h1>
+      </div>
+
+      {% include 'searchbar.html'%}
+
+    </div>
+    {% comment %} Lista de personajes {% endcomment %}
+
+    <div id="search-results">
+      {% include 'characters_list.html' with characters=characters %}
+    </div>
+
+  </div>
+  <div id="detail">
+    {% include 'character_detail.html' %}
+  </div>
+</div>
+
+<script>
+
+  function openModal(event, name_and_id) {
+    event.preventDefault();
+
+    $.ajax({
+      url: "{% url 'characters:detail'%}",
+      data: { 'name_with_id': name_and_id },
+      success: function (data) {
+        $('#detail').html(data.html);
+        
+        const descriptionBackdrop = document.querySelector('#descriptionBackdrop');
+        const dialog = document.querySelector("#dialog");
+
+        setTimeout(() => {         
+          descriptionBackdrop.classList.remove("pointer-events-none", "opacity-0");
+          descriptionBackdrop.classList.add("pointer-events-auto", "opacity-100");
+          dialog.classList.remove("opacity-0", "translate-y-[-50px]");
+          dialog.classList.add("opacity-100", "translate-y-0");
+        }, 20);
+      }
+    });
+  }
+
+  function closeModal(event) {
+    if (event) {
+      event.preventDefault();
+    }
+
+    const descriptionBackdrop = document.querySelector('#descriptionBackdrop');
+    const dialog = document.querySelector("#dialog");
+
+    dialog.classList.remove('opacity-100', 'translate-y-0');
+    dialog.classList.add('opacity-0', 'translate-y-[-50px]');
+
+    dialog.addEventListener('transitionend', () => {
+      descriptionBackdrop.classList.remove('pointer-events-auto', 'opacity-100');
+      descriptionBackdrop.classList.add('pointer-events-none', 'opacity-0');
+    }, { once: true });
+  }
+
+
+function backdropListener(event){
+  if (event.target === descriptionBackdrop && descriptionBackdrop.getAttribute('data-dialog-backdrop-close') === 'true') {
+      closeModal(event);
+    }
+}
+
+</script>
+
+{% endblock %}

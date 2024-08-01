@@ -1,0 +1,49 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %} Main {% endblock %}
+
+{% block content%}
+
+
+<div class="p-3 my-20">
+
+<div class="grid grid-cols-8 rounded-lg">
+    <!-- Sinopsis' image -->
+    <div class="bg-white col-span-4 flex justify-center">
+        <img src="{% static 'media/images/ikkimetabee.jpg' %}" alt="" >
+    </div>
+
+    <!-- Sinopsis -->
+    <div class="flex items-center text-lg text-justify col-span-3 bg-white border-l-2 px-10">
+        <div>
+            <p>
+                En un mundo donde la tecnología ha avanzado a pasos agigantados, los Medabots, robots personalizables, se han convertido en parte fundamental de la vida cotidiana. Medabots sigue la historia de Ikki, un joven que sueña con tener su propio medabot y finalmente lo consigue en Metabee, un modelo un tanto peculiar y rebelde.
+            </p>
+            <br>
+            <p>
+                Juntos, Ikki y Metabee se embarcan en una serie de emocionantes batallas y aventuras, enfrentando desafíos formidables y resolviendo misterios que van más allá de lo que imaginaban. A medida que superan obstáculos y crecen tanto en habilidades como en amistad, descubren secretos sobre el mundo de los Medabots y sus orígenes.
+            </p>
+            <br>
+            <p> 
+                Lo que distingue a Medabots es su mezcla única de acción vibrante, humor ingenioso y momentos profundamente emotivos. Cada episodio no solo entretiene, sino que también invita a la reflexión sobre temas como la lealtad, la perseverancia y el verdadero significado de la amistad.
+            </p>
+            <br>
+            <p>
+                Medabots ofrece una perspectiva fresca y emocionante sobre el género de aventuras tecnológicas, presentando personajes entrañables y tramas cautivadoras. Perfecto para quienes buscan una serie que combine innovación y emociones auténticas, Medabots promete ser una experiencia inolvidable.
+            </p>
+            <br>
+            <div>
+                <i class="fa-solid fa-chevron-right"></i>
+                <a href="{% url 'episodes:episodes' %}" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-4 rounded">
+                    Ver Medabots
+                </a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+</div>
+
+{% endblock %}
